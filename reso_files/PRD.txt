@@ -1,0 +1,788 @@
+The user asked for copy-paste format last time and got that. They're asking for the full updated PRD again — I'll deliver it as a clean copy-paste document with the updated Home Page sections.
+
+---
+
+# MANHAJ AL AMBIYA — WEBSITE PRD
+### Product Requirements Document · Next.js 14 · v1.2
+
+---
+
+## DOCUMENT INFO
+
+| Field | Detail |
+|---|---|
+| Client | Manhaj-Al-Ambiya, Mangaluru |
+| Project | Multi-Page Next.js Website |
+| Framework | Next.js 14 (App Router) |
+| Status | Draft — For Development |
+| Version | 1.2 (Updated Home Page Sections + Template Note) |
+| Date | April 2026 |
+
+---
+
+## IMPORTANT — HTML TEMPLATE NOTE
+
+> The client will provide an existing **HTML landing page template**. The developer must use the **exact layout structure** of this template as the foundation for the Home page. No layout invention — preserve the template's structural skeleton and slot in the correct content, colors, fonts, and brand assets as defined in this PRD.
+>
+> **Developer Steps:**
+> 1. Audit the template's section structure
+> 2. Map each template section to the 12 Home page sections defined below
+> 3. Preserve exact layout, spacing, and structural skeleton
+> 4. Replace all placeholder content with Manhaj Al Ambiya brand content
+> 5. Convert HTML/CSS into Next.js components — no redesign
+> 6. Flag any template sections with no PRD equivalent before removing
+
+---
+
+## 1. DESIGN SYSTEM
+
+### 1.1 Color Palette (From Logo)
+
+| Token | Hex | Usage |
+|---|---|---|
+| `--color-primary` | `#5B2D8E` | Deep Purple — nav, footer, headings, primary buttons |
+| `--color-secondary` | `#2B3FAE` | Royal Blue — borders, links, icon rings, badges |
+| `--color-accent` | `#9c3190` | Magenta Purple — hover states, CTA highlights |
+| `--color-light` | `#F3EEFA` | Lavender Tint — alternate section backgrounds |
+| `--color-warm` | `#FAF7FF` | Near-White Violet — card backgrounds |
+| `--color-text` | `#1A1A2E` | Near Black — body copy |
+| `--color-muted` | `#6B6B8A` | Muted Purple-Gray — captions, labels |
+| `--color-white` | `#FFFFFF` | Card backgrounds, nav text on dark |
+| `--color-border` | `#D4C5EA` | Soft purple — card and divider borders |
+
+### 1.2 Typography
+
+| Role | Font | Weight / Size |
+|---|---|---|
+| Primary Heading H1 | Playfair Display | 700 / 3–3.5rem |
+| Sub-Heading H2 | Playfair Display | 600 / 1.8–2.2rem |
+| Section Title H3 | Inter | 600 / 1.3–1.5rem |
+| Body Copy | Inter | 400 / 1rem (16px) |
+| Arabic Text | Scheherazade New | 400 / 1.2–1.6rem |
+| UI Labels / Buttons | Inter | 600 / 0.85rem uppercase |
+| Quote / Hadith | Cormorant Garamond Italic | 400 / 1.2rem |
+
+### 1.3 Design Principles
+
+1. **Use the HTML template layout exactly** — preserve structural skeleton, map content into it
+2. **No generic AI layouts** — avoid cookie-cutter outputs; honour the template's design choices
+3. **Purple-first identity** — deep purple is the dominant brand colour, don't dilute it
+4. **Blue as structure** — royal blue for borders, circular elements, icon rings, dividers
+5. **Islamic geometric motifs** as decorative SVG patterns at low opacity — never clipart
+6. **Arabic text as a design asset** — not an afterthought; displayed prominently in key sections
+7. **Real community photography** — no generic stock mosque images
+
+---
+
+## 2. TECHNICAL ARCHITECTURE
+
+### 2.1 Stack
+
+| Layer | Technology | Notes |
+|---|---|---|
+| Framework | Next.js 14 (App Router) | SSG + SSR hybrid |
+| Styling | Tailwind CSS + CSS Variables | Design tokens via CSS custom properties |
+| Fonts | next/font (Google Fonts) | Playfair Display, Inter, Scheherazade New |
+| Icons | Lucide React + custom SVGs | Islamic motif SVGs in `/public/icons` |
+| Animations | Framer Motion | Scroll reveals, count-up, page transitions |
+| Image Gallery | yet-another-react-lightbox | Lightbox for image gallery section |
+| QR Code | qrcode.react | UPI QR generation |
+| CMS (Phase 2) | Sanity.io or Contentlayer | Blog + program content management |
+| Forms | React Hook Form + Zod | Contact + enquiry validation |
+| Deployment | Vercel | Edge network, preview deployments |
+| Analytics | Plausible or Vercel Analytics | Privacy-respecting |
+| SEO | Next.js Metadata API | OG tags, sitemap.xml, robots.txt |
+
+### 2.2 Folder Structure
+
+```
+app/
+  layout.tsx                   ← Root layout (Navbar + Footer)
+  page.tsx                     ← Home page
+  about/page.tsx               ← About Us
+  education/page.tsx           ← Education Programs
+  dawa/page.tsx                ← Da'wah Programs
+  publications/page.tsx        ← Publications Programs
+  social-service/page.tsx      ← Social Service Programs
+  blog/page.tsx                ← Blog listing
+  blog/[slug]/page.tsx         ← Individual blog post
+  contact/page.tsx             ← Contact
+
+components/
+  layout/
+    Navbar.tsx
+    Footer.tsx
+  home/
+    HeroSection.tsx
+    MissionStrip.tsx
+    ProgramsOverview.tsx
+    AboutSection.tsx
+    ImpactCounter.tsx
+    WhyChooseUs.tsx
+    ImageGallery.tsx
+    DonationSection.tsx
+    AdmissionCTA.tsx
+    BlogHighlights.tsx
+  shared/
+    ProgramCard.tsx
+    BlogCard.tsx
+    SectionHero.tsx
+    AnchorSubNav.tsx
+    StatCounter.tsx
+    PullQuote.tsx
+    AudioPlayer.tsx
+    DownloadCard.tsx
+    UPIQRCode.tsx
+    DonateStrip.tsx
+
+lib/
+  programs.ts
+  blog.ts
+  constants.ts
+
+public/
+  icons/
+  images/
+  gallery/
+
+styles/
+  globals.css
+```
+
+### 2.3 Route Map
+
+| Route | Page | Nav Label |
+|---|---|---|
+| `/` | Home | Home |
+| `/about` | About Us | About Us |
+| `/education` | Education Programs | Education |
+| `/dawa` | Da'wah Programs | Da'wah |
+| `/publications` | Publications Programs | Publications |
+| `/social-service` | Social Service Programs | Social Service |
+| `/blog` | Blog | Blog |
+| `/contact` | Contact Us | Contact |
+
+---
+
+## 3. PAGE SPECIFICATIONS
+
+---
+
+## HOME PAGE  ( `/` )
+
+**Template instruction:** Use the client-provided HTML template's exact layout. Map the 12 sections below into the template's structural sections in order.
+
+---
+
+### SECTION 1 — HERO SECTION
+
+**Template mapping:** Map to the template's top hero/banner section.
+
+| Field | Specification |
+|---|---|
+| Layout | Full-viewport split layout — 60% text left panel, 40% decorative right panel with Islamic geometric SVG pattern |
+| Background | Deep purple `#5B2D8E` with subtle Islamic geometric SVG overlay at 6% white opacity |
+| Logo | `Asset_1.png` white variant — displayed top-left within hero or via navbar |
+| Main Headline | "Guiding the Community Through Knowledge & Da'wah" |
+| Sub-headline | Manhaj-Al-Ambiya, Mangaluru — Non-Profit Islamic Education & Da'wah Trust |
+| Arabic Line | منهج الأنبياء — Scheherazade New font, royal blue `#2B3FAE`, displayed below headline |
+| Arabic Tagline (small) | منهج الأنبياء للدعوة والإرشاد — from logo, displayed below Arabic line in muted tint |
+| Primary CTA | "Explore Programs" → `/education` — white button, deep purple text |
+| Secondary CTA | "About Us" → `/about` — outlined white button |
+| Right Panel | Decorative: Islamic geometric SVG pattern OR a high-quality community photo (classroom / event scene) with a deep purple colour overlay |
+| Typography | H1: Playfair Display 3.5rem white · Sub: Inter 1.1rem white/75% |
+| Mobile | Full-width stacked; right panel hidden on mobile; CTA buttons full-width |
+
+---
+
+### SECTION 2 — MISSION STRIP
+
+**Template mapping:** Map to the template's ticker / announcement bar or narrow full-width band section.
+
+| Field | Specification |
+|---|---|
+| Layout | Full-width single-line strip, near-black `#1A1A2E` background |
+| Arabic Text | Quran ayah in Scheherazade New — white, centered: وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ |
+| English Translation | "Cooperate in righteousness and piety" — Inter 0.85rem, muted white below Arabic |
+| Reference | (Quran 5:2) — displayed in royal blue `#2B3FAE` to the right of translation |
+| Optional | Auto-scrolling marquee if template has ticker behaviour; static centered if not |
+| Height | 64–80px |
+
+---
+
+### SECTION 3 — PROGRAMS OVERVIEW (4 PILLARS) — IMAGE CARDS
+
+**Template mapping:** Map to the template's features / services grid section.
+
+| Field | Specification |
+|---|---|
+| Layout | 4-column image card grid (2×2 on tablet, 1-col stacked on mobile) |
+| Section Heading | "Our Programs" — Playfair Display, deep purple, centered |
+| Section Sub-heading | "Four pillars of service to the Muslim community of Mangaluru" — Inter, muted, centered |
+| Card Style | Image card: full background image with a deep purple gradient overlay from bottom (70% opacity). Title and description sit on top of the image in white text |
+| Card Hover | Overlay opacity reduces to 40%, card lifts with subtle shadow, arrow icon animates right |
+
+**The 4 Program Cards:**
+
+| # | Program | Image Suggestion | Description |
+|---|---|---|---|
+| 1 | Education Programs | Classroom / students learning | Arabic Academy, Quran Studies, Madrasah, Teen Series, Pre-School |
+| 2 | Da'wah Programs | Lecture hall / community gathering | Islamic classes, workshops, library, studio, online radio |
+| 3 | Publications | Books / Quran printing | Kannada Quran, Islamic books, pamphlets for Muslims & non-Muslims |
+| 4 | Social Service | Community distribution / ration drive | Education aid, medical aid, ration, Eid Kiswa, Eid Kit |
+
+**Each card contains:**
+- Background image (full card fill)
+- Deep purple gradient overlay (bottom to top)
+- Category icon (custom SVG, white, top-left corner of card)
+- Program title — Playfair Display, white, bold, bottom of card
+- One-line description — Inter 0.9rem, white/80%, below title
+- "Learn More →" text link — white, underline on hover
+- Link: `/education` · `/dawa` · `/publications` · `/social-service`
+
+---
+
+### SECTION 4 — ABOUT US SECTION
+
+**Template mapping:** Map to the template's about / company intro section.
+
+| Field | Specification |
+|---|---|
+| Layout | Two-column: left = image, right = text content |
+| Background | Lavender tint `#F3EEFA` |
+| Left Column | Portrait-format community photo (classroom or event scene). Optional: a second smaller overlapping photo to create a stacked image effect |
+| Right Column — Label | Small uppercase label: "WHO WE ARE" in royal blue, Inter 0.8rem |
+| Right Column — Heading | "A Da'wah Organisation Rooted in Quran & Sunnah" — Playfair Display, deep purple |
+| Right Column — Body | Full client paragraph: "The Manhaj-Al-Ambiya, Mangaluru is a non-profit Islamic education and da'wah group with a registered trust. The primary objective is to adhere to the methodology of pious predecessors and the scholars of Ahlu Sunnah with the correct understanding of Quran & Sunnah..." |
+| Right Column — Badges | Three pill badges below body text: "Ahlu Sunnah Methodology" · "Registered Trust" · "Est. Mangaluru" — deep purple background, white text |
+| Right Column — CTA | "Read Our Full Story →" — royal blue text link → `/about` |
+| Vision/Mission Teasers | Two compact rows below CTA: a small icon + bold label + one-line teaser for Vision and Mission |
+| Mobile | Stacked: image full-width top, text below |
+
+---
+
+### SECTION 5 — COMMUNITY IMPACT COUNTER
+
+**Template mapping:** Map to the template's stats / numbers / counter section.
+
+| Field | Specification |
+|---|---|
+| Layout | Full-width band, 4 equal columns |
+| Background | Deep purple `#5B2D8E` — solid, no pattern (clean and bold) |
+| Animation | Count-up numbers triggered when section scrolls into viewport (Framer Motion or CountUp.js) |
+| Dividers | Thin royal blue vertical lines between each stat on desktop |
+
+**The 4 Stats:**
+
+| Stat | Number | Label |
+|---|---|---|
+| 1 | 10+ | Years of Service |
+| 2 | 15+ | Active Programs |
+| 3 | 5000+ | Community Members Served |
+| 4 | 10000+ | Books & Pamphlets Distributed |
+
+**Stat styling:**
+- Number: Playfair Display 3.5rem white bold
+- Label: Inter 0.95rem lavender tint `#F3EEFA`
+- Optional: small icon above each number in royal blue
+
+*(All numbers are placeholders — client to confirm actual figures)*
+
+---
+
+### SECTION 6 — WHY CHOOSE US
+
+**Template mapping:** Map to the template's features / benefits / USP section.
+
+| Field | Specification |
+|---|---|
+| Layout | Section heading centered, then a 3-column grid of feature cards (or 2+2 grid depending on template) |
+| Background | White `#FFFFFF` |
+| Section Label | "WHY CHOOSE US" — small uppercase royal blue label |
+| Section Heading | "Grounded in Knowledge. Committed to Community." — Playfair Display, deep purple |
+| Section Sub | "We follow the methodology of Ahlu Sunnah wal Jama'ah in all our programs and services." — Inter, muted |
+
+**6 Feature Cards:**
+
+| # | Icon | Title | Description |
+|---|---|---|---|
+| 1 | 📖 | Correct Islamic Methodology | All programs follow the Quran & Sunnah as understood by the pious predecessors (Salaf as-Salih) |
+| 2 | 🕌 | Serving Mangaluru Since Years | A trusted local organisation with deep roots in the Mangaluru Muslim community |
+| 3 | 🌍 | Multi-Language Outreach | Da'wah and publications in Kannada, Arabic, English, Urdu, and Tamil |
+| 4 | 👨‍👩‍👧 | Programs for All Ages | From Islamic Pre-School for children to adult Arabic and Tajweed classes |
+| 5 | 📻 | 24/7 Online Islamic Radio | Always-on Islamic content — Quran recitation, lectures, and nasheeds |
+| 6 | 🤝 | Registered Non-Profit Trust | Fully transparent, registered trust with community accountability |
+
+**Card styling:**
+- White card, `--color-border` border, subtle shadow
+- Icon in a royal blue circular ring (48×48px)
+- Title: Inter 1rem bold, deep purple
+- Description: Inter 0.9rem, muted
+- Hover: card lifts, left-border turns deep purple
+
+---
+
+### SECTION 7 — IMAGE GALLERY
+
+**Template mapping:** Map to the template's gallery / portfolio / photo grid section.
+
+| Field | Specification |
+|---|---|
+| Layout | Masonry grid or uniform 3×2 grid (6 images) — depends on template layout |
+| Background | Lavender tint `#F3EEFA` |
+| Section Label | "OUR COMMUNITY" — small uppercase royal blue |
+| Section Heading | "Moments From Our Programs & Events" — Playfair Display, deep purple |
+| Images | Community photos: classes, workshops, Eid distributions, library, da'wah events, social service drives |
+| Overlay | On hover: deep purple overlay with a white expand/zoom icon centered |
+| Lightbox | Click opens full-screen lightbox (use `yet-another-react-lightbox`) |
+| Caption | Each image has a short caption: program name + brief description |
+| CTA | Below grid: "View More →" text link (optional, links to a full `/gallery` page in Phase 2) |
+
+**6 Gallery Image Slots:**
+
+| Slot | Caption Suggestion |
+|---|---|
+| 1 | Arabic Academy — Students in class |
+| 2 | Quran Hifz Circle — Weekly session |
+| 3 | Ration Distribution Drive — Mangaluru |
+| 4 | Teen Series — Saturday Program for Girls |
+| 5 | Eid Kiswa Distribution — Families receiving clothing |
+| 6 | Da'wah Workshop — Community lecture |
+
+*(All images to be provided by client)*
+
+---
+
+### SECTION 8 — DONATION SECTION (UPI QR)
+
+**Template mapping:** Map to the template's CTA / highlight / promotional section.
+
+**This is a featured, prominent section — not a small footer element.**
+
+| Field | Specification |
+|---|---|
+| Background | Warm lavender `#FAF7FF` with deep purple 4px top and bottom border stripe |
+| Section Label | "SUPPORT OUR MISSION" — royal blue uppercase |
+| Section Heading | "Donate & Earn Sadaqah" — Playfair Display, deep purple |
+
+**Quran Ayah Pull-Quote:**
+```
+وَمَا تُنفِقُوا مِن خَيْرٍ فَلِأَنفُسِكُمْ
+"And whatever good you spend — it is for yourselves." — (Quran 2:272)
+```
+Styled as a centered pull-quote: Arabic in Scheherazade New, English in Cormorant Garamond Italic, reference in royal blue.
+
+**Body Text:**
+"Your donations directly fund our education programs, publications, and social service initiatives. Every contribution — large or small — is a sadaqah that benefits the community and, insha'Allah, yourself."
+
+---
+
+**Layout: 2-column on desktop, stacked on mobile**
+
+**Left Column — UPI QR Card:**
+
+```
+┌──────────────────────────────────┐
+│   SCAN & DONATE                  │
+│   (header in deep purple bold)   │
+│                                  │
+│   [QR CODE — 220×220px]          │
+│   Purple dots · White background │
+│                                  │
+│   UPI ID:                        │
+│   manhajambiya@upi               │
+│   (confirm with client)          │
+│                                  │
+│   ──────────────────────         │
+│   Pay via:                       │
+│   GPay · PhonePe · Paytm         │
+│   BHIM · Any UPI App             │
+│                                  │
+│   [ ₹50 ] [ ₹100 ] [ ₹500 ]     │
+│   [ ₹1000 ] [ Custom Amount ]    │
+└──────────────────────────────────┘
+```
+
+Card style: white background, `--color-border` border, soft shadow, rounded corners.
+
+**React Component Spec:**
+```tsx
+// components/home/UPIQRCode.tsx
+// Install: npm install qrcode.react
+
+import QRCode from 'qrcode.react';
+
+const UPI_ID = "manhajambiya@upi"; // ← Replace with actual UPI ID from client
+const PAYEE_NAME = "Manhaj Al Ambiya";
+
+const upiURL = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(PAYEE_NAME)}&cu=INR`;
+
+export function UPIQRCode() {
+  return (
+    <QRCode
+      value={upiURL}
+      size={220}
+      fgColor="#5B2D8E"    // Deep purple
+      bgColor="#FFFFFF"
+      level="H"            // High error correction
+      includeMargin={true}
+    />
+  );
+}
+
+// For preset amount buttons, append &am=AMOUNT to upiURL
+// e.g. upi://pay?pa=...&am=500
+```
+
+---
+
+**Right Column — Donation Programs Breakdown:**
+
+Four compact cards showing where donations go:
+
+| Icon | Title | Description |
+|---|---|---|
+| 📚 | Education Support | Fund scholarships, school supplies for underprivileged students |
+| 📖 | Quran Printing Project | Sponsor Quran copies with Kannada translation for free distribution |
+| 🤲 | Eid Kiswa & Eid Kits | Bring joy to families who cannot afford Eid celebrations |
+| 🍚 | Ration Distribution | Monthly food essentials for needy families in Mangaluru |
+
+Card style: lavender background `#F3EEFA`, royal blue left border, icon in blue circle, title bold deep purple, description muted.
+
+---
+
+**Bank Transfer Accordion (below 2-column layout):**
+
+Collapsed by default. Click "Prefer Bank Transfer?" to expand:
+- Bank Name: *(client to provide)*
+- Account Name: Manhaj Al Ambiya
+- Account Number: *(client to provide)*
+- IFSC Code: *(client to provide)*
+- Branch: *(client to provide)*
+
+---
+
+**Trust Note (bottom of section):**
+> "Manhaj-Al-Ambiya is a registered non-profit Islamic trust based in Mangaluru. All donations are used solely for community welfare and da'wah activities."
+
+---
+
+### SECTION 9 — ADMISSION / ENROLLMENT CTA
+
+**Template mapping:** Map to the template's call-to-action / signup / registration banner section.
+
+| Field | Specification |
+|---|---|
+| Layout | Full-width section, centered content, optional background image with overlay |
+| Background | Deep purple `#5B2D8E` OR a high-quality community/classroom photo with deep purple overlay (0.85 opacity) |
+| Section Label | "JOIN US" — small uppercase white/60% |
+| Heading | "Enroll in Our Programs Today" — Playfair Display, white, large (2.5rem) |
+| Sub-text | "Registration is open for all education programs including Arabic Academy, Quran Hifz, Madrasah, Teen Series, and Islamic Pre-School. Join the Manhaj Al Ambiya community in Mangaluru." |
+| Arabic Line | إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ — "Only those fear Allah, from among His servants, who have knowledge." (35:28) |
+| Primary CTA | "Register Now" → `/contact` — white button, deep purple text, bold |
+| Secondary CTA | "View All Programs" → `/education` — outlined white button |
+| Supporting Info | Three small icon+text items below buttons: ✓ Open to All Muslims · ✓ Separate Classes for Brothers & Sisters · ✓ Qualified Teachers |
+
+---
+
+### SECTION 10 — BLOG HIGHLIGHTS
+
+**Template mapping:** Map to the template's blog / news / articles section.
+
+| Field | Specification |
+|---|---|
+| Layout | 3-column card grid (2-col tablet, 1-col mobile) |
+| Background | White `#FFFFFF` |
+| Section Label | "FROM OUR BLOG" — small uppercase royal blue |
+| Section Heading | "Latest Articles & Updates" — Playfair Display, deep purple |
+| Section Sub | "Islamic knowledge, community news, and program updates from Manhaj Al Ambiya." |
+| View All Link | "View All Posts →" — royal blue, right-aligned, links to `/blog` |
+
+**Each Blog Card:**
+- Featured image (16:9 ratio, top of card)
+- Category tag pill — deep purple background, white text (Education / Da'wah / Social Service)
+- Title — Playfair Display 1.1rem, deep purple, bold
+- Excerpt — Inter 0.9rem, muted, 2-line clamp
+- Author name — Inter 0.8rem, muted, with small avatar initial
+- Date + Read time — Inter 0.8rem, muted
+- "Read More →" — royal blue text link
+- Card hover: shadow lifts, title colour shifts to magenta
+
+---
+
+**3 Sample Blog Posts:**
+
+**Post 1:**
+- Title: The Importance of Arabic in Understanding the Quran
+- Category: Islamic Education
+- Slug: `/blog/importance-of-arabic-in-understanding-quran`
+- Excerpt: Arabic is not merely a language — it is the vessel through which Allah chose to reveal His final message. Understanding the Quran in its original language transforms a Muslim's relationship with the Words of Allah.
+- Author: Admin, Manhaj-Al-Ambiya
+- Read Time: 5 min read
+- CTA: "Explore Our Arabic Academy" → `/education#arabic-academy`
+
+**Post 2:**
+- Title: Da'wah in the Kannada Belt: Why Local Language Publications Matter
+- Category: Da'wah & Publications
+- Slug: `/blog/dawah-kannada-belt-local-language-publications`
+- Excerpt: In a region where Kannada is the mother tongue of millions, the message of Islam must speak in a familiar voice. Discover how our Kannada Quran printing and pamphlet programs are bridging the gap.
+- Author: Publications Team, Manhaj-Al-Ambiya
+- Read Time: 6 min read
+- CTA: "Support the Project" → `/publications#quran-printing`
+
+**Post 3:**
+- Title: Eid Preparations for Those Who Have Little: Our Annual Kiswa & Eid Kit Drive
+- Category: Social Service
+- Slug: `/blog/eid-kiswa-eid-kit-drive-mangaluru`
+- Excerpt: Every year our volunteers spend weeks assembling Eid kits so that no family in Mangaluru has to face Eid without celebration. Here is the story of this year's drive.
+- Author: Social Service Team, Manhaj-Al-Ambiya
+- Read Time: 4 min read
+- CTA: "Donate to Eid Programs" → `/contact`
+
+---
+
+### SECTION 11 — FOOTER
+
+**Template mapping:** Map to the template's footer section exactly.
+
+| Column | Content |
+|---|---|
+| Column 1 — Brand | Logo `Asset_1.png` (white variant) · Arabic tagline: منهج الأنبياء للدعوة والإرشاد · Short description: "A non-profit Islamic education and da'wah trust serving the Muslim community of Mangaluru." · Trust registration note · Social icons: Facebook, Instagram, YouTube |
+| Column 2 — Quick Links | Home · About Us · Education · Da'wah · Publications · Social Service · Blog · Contact |
+| Column 3 — Our Programs | Arabic Academy · Quran Tajweed & Hifz · Madrasah & Islamic Studies · Teen Series · Islamic Pre School · Tasfiyah & Tarbiyah · Islamic Workshops · Multi Language Library |
+| Column 4 — Donate & Contact | UPI ID display · "Scan QR to Donate" small QR thumbnail · "Donate Now" button → `/#donation` · Divider · Address: Mangaluru, Karnataka · Phone: *(client to provide)* · Email: *(client to provide)* |
+| Bottom Bar Left | © 2026 Manhaj-Al-Ambiya. All rights reserved. Non-Profit Islamic Trust, Mangaluru. |
+| Bottom Bar Right | Privacy Policy · Terms of Use |
+| Bottom Bar Colour | Deep purple `#5B2D8E` background, white text |
+| Footer Body Colour | Near-black `#1A1A2E` background, white/muted text for columns |
+
+**Footer Online Radio Widget:**
+A small audio player bar sits just above the main footer columns:
+- Background: slightly lighter than footer body (`#252540`)
+- Content: 🎙 **Manhaj Al Ambiya — Islamic Radio** · [▶ Play] button · "24/7 Live — Quran, Lectures & Nasheeds"
+- Width: full-width of footer
+
+---
+
+## 4. NAVBAR
+
+| Element | Specification |
+|---|---|
+| Logo | `Asset_1.png` — white variant on dark nav · full-colour on light/scrolled state |
+| Nav Links | Home · About Us · Education ▾ · Da'wah ▾ · Publications ▾ · Social Service · Blog · Contact |
+| Dropdowns | Education, Da'wah, Publications: mega-dropdown with program names + short descriptions |
+| Mobile | Hamburger → full-height slide-in drawer from right; accordions for dropdown items |
+| Scroll | Transparent + white text over hero · Solid `#5B2D8E` after 80px scroll |
+| CTA Button | "Donate Now" — royal blue `#2B3FAE` button, far right → `/#donation` |
+| Radio Widget | Mini "🎙 Live Radio" play/pause button, far right beside Donate button |
+| Sticky | Yes — navbar sticks to top on scroll |
+
+---
+
+## 5. INNER PAGE SPECIFICATIONS
+
+---
+
+### PAGE — ABOUT US  ( `/about` )
+
+**Section A — Hero:** "About Us" banner on deep purple · subtitle: "A da'wah organisation rooted in Quran & Sunnah" · breadcrumb
+
+**Section B — Who We Are:** Full client text in editorial format (max-width 720px, centered column). Pull-quote in Playfair Display Italic:
+> *"Our primary goal is to teach the correct Islam in our city and local area to clear up the misconceptions of both Muslims and non-Muslims."*
+
+**Section C — Vision / Mission / Values (3 Panels):**
+
+| Panel | Heading | Content |
+|---|---|---|
+| 1 | Our Vision | Establish scholars equipped with Deen and Duniya knowledge. Provide quality education based on Islamic values to allow the correct status of Islam to be established successfully. |
+| 2 | Our Mission | Encourage practice of prophetic teachings in daily life. Prepare the community for exemplary Muslim life in modern times with Tawheed at the core and Islam as the focal point in all affairs. |
+| 3 | Our Values | Live by Quran & Sunnah. Demonstrate integrity, truthfulness, forgiveness, humility, and modesty. Treat all people with respect, fairness, and justice. Accountability to Allah in all things. |
+
+**Section D — Programs at a Glance:** Four icon pills → Education · Da'wah · Publications · Social Service
+
+**Section E — Trust & Governance Card:** Registered Trust confirmation, location, non-profit status, Ahlu Sunnah adherence
+
+**Section F — Contact Strip:** "Have questions?" → `/contact`
+
+---
+
+### PAGE — EDUCATION PROGRAMS  ( `/education` )
+
+**Hero:** "Education Programs" · subtitle: "Nurturing knowledge from childhood to adulthood" · sticky anchor sub-nav
+
+**Programs:**
+
+| # | Program | Key Details |
+|---|---|---|
+| 1 | Arabic Academy | Beginner → Advanced · Nahw, Sarf, reading comprehension · Adult learners · Enroll CTA |
+| 2 | Quran Tajweed & Hifz | Tajweed rules + Hifz memorisation track · Accountability system · Ijazah pathway · Enroll CTA |
+| 3 | Madrasah & Islamic Studies | Aqeedah, Fiqh, Seerah, Hadith, Tafsir · Children and young adults · Term-based · Enroll CTA |
+| 4 | Teen Series (Saturday · Girls) | Ages 13–18 · Identity, sisters' fiqh, Quran connection · Interactive & discussion-based · Enroll CTA |
+| 5 | Islamic Pre School | Ages 3–6 · Play-based Islamic learning · Arabic alphabets, duas, basic aqeedah · Enroll CTA |
+
+All program sections: 2-column layout (description + details sidebar) · Registration CTA → `/contact`
+
+---
+
+### PAGE — DA'WAH PROGRAMS  ( `/dawa` )
+
+**Hero:** "Da'wah Programs" · subtitle: "Calling to Allah through knowledge, media, and community" · sticky sub-nav
+
+| # | Program | Key Details |
+|---|---|---|
+| 1 | Tasfiyah & Tarbiyah (Islamic Classes) | Weekly/bi-weekly · Purification of creed + character · Lecture + Q&A format · Separate sittings |
+| 2 | Islamic Workshops | One/two-day intensives · Marriage, parenting, business ethics · Registration required · Schedule grid |
+| 3 | Multi Language Islamic Library | Kannada, Arabic, English, Urdu, Tamil · Borrowing system · Open days displayed |
+| 4 | Multi Media Wing / Islamic Studio | Audio/video production · YouTube, social media, web portal distribution · Productions gallery |
+| 5 | Web Portal & Online Islamic Radio | 24/7 stream · Quran, lectures, nasheeds · Embedded audio player · Lecture archives |
+
+---
+
+### PAGE — PUBLICATIONS PROGRAMS  ( `/publications` )
+
+**Hero:** "Publications Programs" · subtitle: "Spreading the light of knowledge through print" · sticky sub-nav
+
+| # | Program | Key Details |
+|---|---|---|
+| 1 | Quran (Kannada) Printing Project | Free/subsidised distribution · Impact counter · Sponsor copies CTA (₹500 = 1 copy) |
+| 2 | Handy Kannada Islamic Books | Pocket-sized series · Book catalog grid · Affordable / free distribution |
+| 3 | Islamic Pamphlets for Muslims | Daily life topics · PDF download + physical pickup · Download cards |
+| 4 | Islamic Pamphlets for Non-Muslims | Kannada + English · Free download + distribution · Optional request form |
+
+---
+
+### PAGE — SOCIAL SERVICE PROGRAMS  ( `/social-service` )
+
+**Hero:** "Social Service Programs" · subtitle: "Serving our community with compassion and care" · sticky sub-nav
+
+| # | Program | Key Details |
+|---|---|---|
+| 1 | Education Support | Scholarships, school bags, uniforms, stationery · Application form · Donor CTA |
+| 2 | Medical Aid & Support | Hospital bills, medication · Local clinic partnerships · Apply via Contact · Donor CTA |
+| 3 | Family Support (Ration Distributions) | Monthly ration drives · Sponsor a family's ration · Fixed ₹ contribution |
+| 4 | Eid Kiswa | New clothing before Eid · Local sourcing · Donor CTA |
+| 5 | Eid Kit | Complete Eid kits: clothing + sweets + food · Dignity for poor families · Sponsor a kit CTA |
+| 6 | Creativity Awareness Programs | Calligraphy, public speaking, creative writing · Youth workshops · Photo gallery |
+
+---
+
+### PAGE — BLOG  ( `/blog` )
+
+**Index:** 3-col grid · category filter sidebar · tags cloud · recent posts
+
+**Individual Post Template:** Featured image · title · author · date · read time · body content · related posts · share buttons · CTA strip at bottom
+
+*3 sample posts specified in Section 10 (Blog Highlights) above*
+
+---
+
+### PAGE — CONTACT  ( `/contact` )
+
+**Section A — Hero:** "Contact Us" banner
+
+**Section B — Contact Form:**
+
+| Field | Type | Notes |
+|---|---|---|
+| Full Name | Text | Required |
+| Email Address | Email | Required |
+| Phone Number | Tel | Optional, Indian format |
+| Enquiry Type | Select | General / Program Registration / Donation / Media / Other |
+| Message | Textarea | Required, min 20 chars |
+| Submit | Button | "Send Message" — deep purple, magenta hover |
+
+**Section C — Details:** Address · Phone · Email · Office Hours (Sat–Thu 9AM–6PM, Fri closed)
+
+**Section D — Map:** Embedded Google Maps, Mangaluru location
+
+**Section E — Donation Shortcut:** Compact QR + UPI ID + link to `/#donation`
+
+---
+
+## 6. SHARED COMPONENTS
+
+| Component | File | Purpose |
+|---|---|---|
+| ProgramCard | `shared/ProgramCard.tsx` | Title, category, description, CTA |
+| BlogCard | `shared/BlogCard.tsx` | Thumbnail, tag, title, excerpt, meta |
+| SectionHero | `shared/SectionHero.tsx` | Inner page hero: title, subtitle, breadcrumb |
+| AnchorSubNav | `shared/AnchorSubNav.tsx` | Sticky horizontal sub-nav for program pages |
+| StatCounter | `shared/StatCounter.tsx` | Animated count-up stat display |
+| PullQuote | `shared/PullQuote.tsx` | Quran ayah / Hadith styled blockquote |
+| AudioPlayer | `shared/AudioPlayer.tsx` | Mini player for Islamic Radio stream |
+| DownloadCard | `shared/DownloadCard.tsx` | PDF pamphlet download cards |
+| UPIQRCode | `shared/UPIQRCode.tsx` | QR code generator (qrcode.react) |
+| DonateStrip | `shared/DonateStrip.tsx` | Compact donation CTA strip |
+
+---
+
+## 7. SEO PER-PAGE METADATA
+
+| Page | Title | Meta Description |
+|---|---|---|
+| Home | Manhaj Al Ambiya — Islamic Education & Da'wah, Mangaluru | Non-profit Islamic education, da'wah, and social service organisation in Mangaluru, Karnataka. |
+| About | About Us — Manhaj Al Ambiya | Learn about our mission, vision, and values as an Ahlu Sunnah da'wah organisation in Mangaluru. |
+| Education | Education Programs — Manhaj Al Ambiya | Arabic Academy, Quran Tajweed, Hifz, Madrasah, Teen Series, and Islamic Pre-School in Mangaluru. |
+| Da'wah | Da'wah Programs — Manhaj Al Ambiya | Islamic classes, workshops, library, Islamic studio, and online radio in Mangaluru. |
+| Publications | Publications — Manhaj Al Ambiya | Kannada Quran printing, Islamic books, and da'wah pamphlets for Muslims and non-Muslims. |
+| Social Service | Social Service — Manhaj Al Ambiya | Education aid, medical support, ration drives, Eid Kiswa and Eid Kits for Mangaluru families. |
+| Blog | Blog — Manhaj Al Ambiya | Islamic articles, community updates, and program news from Manhaj Al Ambiya. |
+| Contact | Contact — Manhaj Al Ambiya | Get in touch for program registration, donations, or general enquiries. |
+
+---
+
+## 8. ACCESSIBILITY & PERFORMANCE
+
+### WCAG 2.1 AA
+- All images: descriptive `alt` attributes including Arabic text descriptions
+- Colour contrast: minimum 4.5:1 body text · 3:1 large text (deep purple on white passes)
+- All interactive elements keyboard-navigable with royal blue focus rings
+- Form fields: `<label>` elements + accessible error messages
+- Audio player: screen reader labels, keyboard controls
+- QR section: text fallback — "Or use UPI ID: [id]"
+- Semantic HTML: `<main>`, `<nav>`, `<section>`, `<article>`, `<aside>`
+
+### Performance Targets
+
+| Metric | Target |
+|---|---|
+| Lighthouse (mobile + desktop) | ≥ 90 |
+| Largest Contentful Paint | < 2.5s |
+| Cumulative Layout Shift | < 0.1 |
+| Images | WebP + AVIF fallback via `next/image` |
+| Fonts | Preloaded via `next/font`, zero layout shift |
+| Bundle | Tree-shaking, per-route code splitting |
+
+---
+
+## 9. DEVELOPMENT MILESTONES
+
+| Phase | Deliverable | Timeline |
+|---|---|---|
+| Phase 1 — Setup | Next.js scaffold, Tailwind config, design tokens, fonts, base component library | Week 1–2 |
+| Phase 2 — Home Page | Receive HTML template from client · Audit + map to 12 sections · Convert to Next.js · Full content + branding | Week 2–3 |
+| Phase 3 — Program Pages | Education, Da'wah, Publications, Social Service — all sub-sections | Week 3–5 |
+| Phase 4 — Blog | Blog index, post template, 3 sample posts, category filter | Week 5–6 |
+| Phase 5 — About + Contact | About Us page, Contact form + validation, map embed, audio radio player | Week 6–7 |
+| Phase 6 — QA & Launch | SEO audit, accessibility audit, Lighthouse optimisation, client review, Vercel deploy | Week 7–8 |
+
+---
+
+## 10. CLIENT CHECKLIST
+
+| # | Item | Status |
+|---|---|---|
+| 1 | ✅ Logo provided — `Asset_1.png` full colour | Done |
+| 2 | ☐ White variant of logo for dark backgrounds | Pending |
+| 3 | ☐ Share HTML landing page template (Google Drive or agreed channel) | Pending |
+| 4 | ☐ Confirm official UPI ID for QR code | Pending |
+| 5 | ☐ Bank account details (Name, Account No., IFSC, Branch) | Pending |
+| 6 | ☐ Organisation address, phone, email | Pending |
+| 7 | ☐ Social media URLs (Facebook, Instagram, YouTube) | Pending |
+| 8 | ☐ Photography — min 20 images (classes, events, distributions, team) | Pending |
+| 9 | ☐ 6 gallery images with captions | Pending |
+| 10 | ☐ Online Islamic Radio stream URL | Pending |
+| 11 | ☐ Trust registration number | Pending |
+| 12 | ☐ Confirm impact counter figures (years, programs, members, books) | Pending |
+| 13 | ☐ Review and approve 3 sample blog posts | Pending |
+| 14 | ☐ Sign off on this PRD before development begins | Pending |

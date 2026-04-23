@@ -1,0 +1,152 @@
+
+/* --- Ref UI Footer Redesign --- */
+.modern-footer-ref {
+  background-color: #2F3B8F; /* Reference Deep Blue */
+  background-image: linear-gradient(135deg, #253480 0%, #2F3B8F 100%);
+  position: relative;
+  overflow: hidden;
+  padding-top: 70px;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+/* Abstract right texture/gradient element representing reference right side texture */
+.modern-footer-ref::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 40%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 8px);
+  mask-image: linear-gradient(90deg, transparent, black);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black);
+  pointer-events: none;
+}
+
+.modern-footer-ref .footer-logo img {
+  filter: brightness(0) invert(1);
+  max-width: 200px;
+}
+
+.modern-footer-ref .footer-title-ref {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.modern-footer-ref .footer-text-ref {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #c9d2ef; /* Soft violet/grey text */
+  margin-top: 15px;
+}
+
+.modern-footer-ref .footer-list-ref {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modern-footer-ref .footer-list-ref li {
+  margin-bottom: 15px;
+}
+
+.modern-footer-ref .footer-list-ref li a {
+  color: #c9d2ef;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.modern-footer-ref .footer-list-ref li a:hover {
+  color: #ffffff;
+}
+
+.modern-footer-ref .contact-text-ref {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #c9d2ef;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.modern-footer-ref .contact-highlight-ref {
+  display: block;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 15px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.modern-footer-ref .contact-highlight-ref:hover {
+  opacity: 0.8;
+}
+
+.modern-footer-ref .footer-bottom-ref {
+  border-top: 1px dashed rgba(255,255,255,0.15); /* dashed divider */
+  margin-top: 50px;
+  padding: 25px 0;
+}
+
+.modern-footer-ref .copyright-ref {
+  color: #c9d2ef;
+  font-size: 13px;
+}
+
+.modern-footer-ref .copyright-ref a {
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.modern-footer-ref .social-group-ref {
+  display: inline-flex;
+  gap: 12px;
+}
+
+.modern-footer-ref .social-group-ref a {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2F3B8F; /* Dark icon */
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.modern-footer-ref .social-group-ref a:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.modern-footer-ref .legal-links-ref {
+  font-size: 13px;
+  color: #c9d2ef;
+}
+
+.modern-footer-ref .legal-links-ref a {
+  color: #c9d2ef;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.modern-footer-ref .legal-links-ref a:hover {
+  color: #ffffff;
+}
+
+.modern-footer-ref .legal-links-ref .sep {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+
+/* Ensure no override from default */
+.modern-footer-ref p {
+    margin-bottom: 0;
+}
