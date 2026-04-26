@@ -1217,25 +1217,163 @@
   .donation-counter-wrapp {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 10px !important;
+    /* gap: 5px !important; */
   }
 
   .donation-counter-wrapp .counter-box {
-    width: 48% !important;
-    flex: 0 0 48% !important;
-    max-width: 48% !important;
+    width: 100% !important;
+    flex: 0 0 50% !important;
+    max-width: 40% !important;
     margin: 0 !important;
     position: relative !important;
   }
 
 .gallery-block_two-image img{
-	margin-top:130px;
+	margin-top:100px;
 }
 .modern-footer-ref .col-lg-3 {
 		flex: 0 0 100%;
 		max-width: 100%;
 		margin-bottom: 10px;
 	}
+.experiance-one {
+  padding: 50px 0px 30px 0px !important;
+}
+.sec-title_heading {
+	font-size: 24px !important;
+	font-weight: 600 !important;
+}
+/* .sec-title_title {
+	font-size: 14px !important;
+	font-weight: 400 !important;
+} */
+.card-title-block {
+	font-size: 24px !important;
+	font-weight: 600 !important;
+	line-height: 0.7 !important;
+}
+.about-two {
+  position: relative;
+  padding: 40px 0px 30px !important;
+}
+.sec-title-two_heading {
+	font-size: 24px !important;
+	font-weight: 600 !important;
+}
+.about-two_content-outer {
+  padding-left: 0px !important;
+}
+.institute-one {
+	  padding: 40px 0px 30px !important;
+}
+counter-box .box-number {
+	height: 120px !important;
+	width: 120px !important;
+}
+  .gallery-two {
+    margin-top: -50px !important;
+  }
+  .learning-one {
+	padding: 40px 0px 30px !important;
+  }
+  .cta_wrapper {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.learning-one_button .theme-btn{
+	padding: 10px 20px !important;
+}
+.learning-one_counter-count{
+	font-size: 24px !important;
+	margin-bottom: -10px !important;
+	margin-top: 20px;
+}
+.learning-img-container {
+	margin-right: 10px !important;
+  }
+  .sec-title_text {
+	width: 100% !important;
+	max-width: 300px !important;
+  }
+  .news-four {
+	padding: 40px 0px 30px !important;
+  }
+  .edu-program{
+	padding: 40px 0 0 0 !important;
+  }
+.img-column{
+	height: 250px !important;
+	width: auto !important;
+}
+#arabic-academy {
+	padding: 40px 0px 40px !important;
+}
+#quran-tajweed {
+	padding: 40px 0px 40px !important;
+}
+#madrasah {
+	padding: 40px 0px 40px !important;
+}
+#teen-series {
+	padding: 40px 0px 40px !important;
+}
+#pre-school {
+	padding: 40px 0px 40px !important;
+}
+.dawa-section {
+	padding: 40px 0px 40px !important;
+}
+#tasfiyah{
+	padding: 10px 0px 40px !important;
+}
+#workshops{
+	padding: 40px 0px 40px !important;
+}
+#library{
+	padding: 40px 0px 40px !important;
+}
+#studio {
+	padding: 40px 0px 10px !important;
+}
+#radio{
+	padding: 40px 0px 20px !important;
+}
+#quran-printing{
+	padding: 10px 0px 40px !important;
+}
+#books{
+	padding: 40px 0px 40px !important;
+}
+#pamphlets-muslims{
+	padding: 40px 0px 40px !important;
+}
+#pamphlets-nonmuslims{
+	padding: 40px 0px 40px !important;
+}
+#education-support{
+	padding: 10px 0px 40px !important;
+}
+#medical-aid{
+	padding: 40px 0px 40px !important;
+}
+#ration{
+	padding: 40px 0px 40px !important;
+}
+#eid-kiswa{
+	padding: 40px 0px 40px !important;
+}
+#eid-kit{
+	padding: 40px 0px 40px !important;
+}
+#creativity{
+	padding: 40px 0px 40px !important;
+}
+.contact-card-map{
+	height: 250px !important;
+	width: 100% !important;
+}
 
 
 }
@@ -1455,6 +1593,11 @@
 		margin-bottom: var(--margin-bottom-25);
 	}
 
+	.card-title-block {
+	font-size: 22px !important;
+	font-weight: 600 !important;
+}
+
 }
 
 @media only screen and (max-width: 479px) {
@@ -1601,7 +1744,8 @@
 	}
 
 	.page-title {
-		padding: 80px 0px 80px;
+		padding: 40px 0px 40px;
+		min-height: 250px !important;
 	}
 
 	.faq-one_accordian-column .accordian-outer{
@@ -2530,4 +2674,82 @@
 		line-height: 40px;
 	}
 	
+}
+
+/* Extra Mobile Responsiveness Fixes */
+@media only screen and (max-width: 991px) {
+    .learning-one_image {
+        margin-top: 30px;
+    }
+    .cta_wrapper {
+        justify-content: flex-start;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .slider-five_heading {
+        font-size: 36px !important;
+        line-height: 46px !important;
+    }
+    .slider-five_text {
+        font-size: 16px !important;
+        line-height: 26px !important;
+    }
+    .cta-four_title .text-arabic {
+        font-size: 1.6rem !important;
+    }
+    .cta-four_title span:not(.text-arabic) {
+        font-size: 1.1rem !important;
+    }
+    .sec-title_heading {
+        font-size: 28px !important;
+        line-height: 38px !important;
+    }
+    .sec-title-two_heading {
+        font-size: 28px !important;
+        line-height: 38px !important;
+    }
+    .experiance-block_one-inner, .institute-block_one-inner, .news-block_five-inner {
+        margin-bottom: 20px;
+    }
+    .learning-one_counter-count {
+        font-size: 28px !important;
+    }
+    .cta_wrapper {
+        justify-content: center;
+        text-align: center;
+    }
+    .learning-img-container {
+        margin-top: 30px;
+    }
+    .header-top_list-two, .header-top_list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .header-top_list li, .header-top_list-two li {
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .slider-five_heading {
+        font-size: 28px !important;
+        line-height: 38px !important;
+    }
+    .slider-five_text {
+        font-size: 15px !important;
+        line-height: 24px !important;
+    }
+    .cta-four_title .text-arabic {
+        font-size: 1.4rem !important;
+    }
+    .cta-four_title span:not(.text-arabic) {
+        font-size: 1rem !important;
+    }
+    .sec-title_heading, .sec-title-two_heading {
+        font-size: 24px !important;
+        line-height: 34px !important;
+    }
 }
