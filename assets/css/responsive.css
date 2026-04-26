@@ -1,4 +1,5 @@
 /* Al-Quran Online Business HTML-5 Template */
+html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
 
 @media only screen and (max-width: 2770px){
 	
@@ -419,6 +420,10 @@
 
 	.cta-two .inner-container{
 		padding: 40px 25px 40px;
+	}
+
+	.header-top{
+		display:none;
 	}
 
 	.header-top_list-two{
@@ -2273,6 +2278,7 @@ counter-box .box-number {
 	
 	.about-two_image-column{
 		order:2;
+		text-align: center;
 	}
 	
 }
@@ -2671,85 +2677,255 @@ counter-box .box-number {
 	
 	.total-experiance_box-inner {
 		font-size: 26px;
+	
+	
+	
+	.slider-five_heading {
+		font-size: 34px;
+		line-height: 44px;
+	}
+	
+	.main-header.header-style-five .outer-box::before,
+	.sec-title-two_heading br,
+	.slider-five_vector-2,
+	.slider-five_text br{
+		display:none;
+	}
+	
+	.slider-five_text {
+		font-size: 16px;
+		line-height: 28px;
+	}
+	
+	.cta-two.style-three .cta-two_heading {
+		font-size: 22px;
+	}
+	
+	.main-header.header-style-five{
+		background-color: #ffffff;
+	}
+	
+	.slider-six_heading{
+		margin-right:0px;
+	}
+	
+	.slider-six_audio-player .volume-control input{
+		margin-left:0px;
+		width: 100%;
+	}
+	
+	
+}
+
+@media only screen and (max-width: 479px) {
+	
+	.slider-four_heading {
+		font-size: 30px;
+		line-height: 40px;
+	}
+	
+	.slider-four_text{
+		font-size:16px;
+		line-height:26px;
+	}
+	
+	.slider-four_shape,
+	.slider-four_arrow,
+	.slider-four_quran{
+		display:none;
+	}
+	
+	.sec-title.style-two .sec-title_heading{
+		font-size:28px;
+		line-height:38px;
+	}
+	
+	.learning-one_counter-count{
+		font-size:40px;
+	}
+	
+	.learning-one_counter-text{
+		font-size:18px;
+	}
+	
+	.course-block_three-author strong{
+		font-size:14px;
+	}
+	
+	.course-block_three-price{
+		font-size:11px;
+	}
+	
+	.testimonial-block_three-inner{
+		padding:30px 20px;
+	}
+	
+	.testimonial-block_three-rating{
+		margin-top:25px;
+	}
+	
+	.testimonial-block_three-heading{
+		font-size:20px;
+		margin-top:25px;
+	}
+	
+	.testimonial-block_three-text{
+		font-size: 16px;
+		line-height: 30px;
+		margin-top:10px;
+	}
+	
+	.news-block_four-author{
+		font-size:13px;
+	}
+	
+	.news-block_four-more{
+		font-size:12px;
+		padding:11px 18px;
+	}
+	
+	.main-header.header-style-four .outer-box::before{
+		left:-20px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	.sec-title-two_title i{
+		display:none;
+	}
+	
+	h2 {
+		line-height: 34px;
+		font-size: var(--font-24);
+	}
+	
+	.experiance-block_three-inner,
+	.experiance-block_two-inner,
+	.experiance-block_one-inner{
+		padding:25px 25px;
+		border-radius:20px;
+	}
+	
+	.experiance-block_one-years {
+		font-size: 24px;
+		line-height: 34px;
+	}
+	
+	.experiance-block_two-studeents span {
+		font-size: 28px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	.slider-six_heading {
+		font-size: 30px;
+		line-height: 40px;
+		margin-bottom:20px;
+	}
+	
+	.slider-six_text{
+		padding-left:0px;
+	}
+	
+	.offer-block_two-inner{
+		overflow:hidden;
+		border-radius:30px 30px 25px 25px;
+	}
+	
+	.news-block_five {
+		margin-bottom: 30px;
+	}
+	
+	.news-block_five-inner{
+		overflow:hidden;
+		border-radius:10px 10px;
+	}
+	
+	.cta-five_title br,
+	.slider-six_courses,
+	.slider-six_text span,
+	.offer-block_two-image::before,
+	.news-block_five-image::after,
+	.main-header.header-style-six .search-box-btn{
+		display:none;
+	}
+	
+	.slider-six_audio-player .title-outer .title{
+		font-size:16px;
+		padding:15px 30px;
+	}
+	
+	.cta-five_title {
+		font-size: 22px;
+	}
+	
+	.total-experiance_box-inner {
+		font-size: 26px;
 		line-height: 40px;
 	}
 	
 }
 
-/* Extra Mobile Responsiveness Fixes */
+/* /* Extra Mobile Responsiveness Fixes */
 @media only screen and (max-width: 991px) {
-    .learning-one_image {
-        margin-top: 30px;
+    .learning-one_image { margin-top: 40px; }
+    .cta_wrapper { justify-content: center; text-align: center; gap: 20px; }
+    .learning-one { min-height: auto !important; padding: 60px 0 !important; }
+    .learning-one .sec-title_heading, 
+    .learning-one .sec-title_text { max-width: 100% !important; }
+    .learning-one_counter-count { font-size: 30px !important; }
+    .learning-one_counter-text { font-size: 14px !important; }
+    .slider-five_heading { font-size: 42px !important; line-height: 52px !important; }
+    .slider-five_text { font-size: 18px !important; line-height: 28px !important; }
+    .cta-four_title .text-arabic { font-size: 1.8rem !important; }
+    .cta-four_title span:not(.text-arabic) { font-size: 1.2rem !important; }
+    .sec-title_heading, .sec-title-two_heading { font-size: 32px !important; line-height: 42px !important; }
+    .experiance-block_one-inner, .institute-block_one-inner, .news-block_five-inner { padding: 25px !important; margin-bottom: 20px; }
+}
+.parallax-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 10, 30, 0.7);
+}
+.parallax-section .auto-container {
+    position: relative;
+    z-index: 2;
+}
+.parallax-heading {
+    color: #ffffff;
+    font-size: 42px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+@media only screen and (max-width: 991px) {
+    .parallax-section {
+        background-attachment: scroll; /* Better performance on mobile */
+        padding: 80px 0;
     }
-    .cta_wrapper {
-        justify-content: flex-start;
+    .parallax-heading {
+        font-size: 32px;
     }
 }
-
 @media only screen and (max-width: 767px) {
-    .slider-five_heading {
-        font-size: 36px !important;
-        line-height: 46px !important;
+    .parallax-section {
+        padding: 60px 0;
     }
-    .slider-five_text {
-        font-size: 16px !important;
-        line-height: 26px !important;
-    }
-    .cta-four_title .text-arabic {
-        font-size: 1.6rem !important;
-    }
-    .cta-four_title span:not(.text-arabic) {
-        font-size: 1.1rem !important;
-    }
-    .sec-title_heading {
-        font-size: 28px !important;
-        line-height: 38px !important;
-    }
-    .sec-title-two_heading {
-        font-size: 28px !important;
-        line-height: 38px !important;
-    }
-    .experiance-block_one-inner, .institute-block_one-inner, .news-block_five-inner {
-        margin-bottom: 20px;
-    }
-    .learning-one_counter-count {
-        font-size: 28px !important;
-    }
-    .cta_wrapper {
-        justify-content: center;
-        text-align: center;
-    }
-    .learning-img-container {
-        margin-top: 30px;
-    }
-    .header-top_list-two, .header-top_list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .header-top_list li, .header-top_list-two li {
-        margin-bottom: 5px;
+    .parallax-heading {
+        font-size: 26px;
     }
 }
 
-@media only screen and (max-width: 480px) {
-    .slider-five_heading {
-        font-size: 28px !important;
-        line-height: 38px !important;
-    }
-    .slider-five_text {
-        font-size: 15px !important;
-        line-height: 24px !important;
-    }
-    .cta-four_title .text-arabic {
-        font-size: 1.4rem !important;
-    }
-    .cta-four_title span:not(.text-arabic) {
-        font-size: 1rem !important;
-    }
-    .sec-title_heading, .sec-title-two_heading {
-        font-size: 24px !important;
-        line-height: 34px !important;
-    }
-}
+
+
